@@ -1,0 +1,86 @@
+grammar VCardGrammar
+  
+  rule contentlines
+    contentline*
+  end
+
+  rule contentline
+    (group ".")? name param_list:(";" param)* ":" value crlf <TreeCard::ContentLineNode>
+  end
+
+  rule group
+    (alpha / digit / "-")+
+  end
+
+  rule name
+    x_name / iana_token
+  end
+
+  rule iana_token
+    (alpha / digit / "-")+
+  end
+
+  rule x_name
+    [Xx] "-" (alpha / digit / "-")+
+  end
+
+  rule param
+    param_name ("=" param_value extra_params:("," param_value)*)? <TreeCard::ParamNode>
+  end
+
+  rule param_name
+    x_name / iana_token
+  end
+
+  rule param_value
+    ptext / quoted_string
+  end
+
+  rule ptext
+    safe_char*
+  end
+
+  rule value
+    value_char*
+  end
+
+  rule quoted_string
+    "\"" qsafe_char* "\""
+  end
+
+  rule non_ascii
+    [\x80-\xFF]
+  end
+
+  rule qsafe_char
+    whitespace / "\x21" / [\x23-\x7E] / non_ascii
+  end
+
+  rule safe_char
+    whitespace / "\x21" / [\x23-\x2B] / [\x2D-\x39] / [\x3C-\x7E] / non_ascii
+  end
+
+  rule value_char
+    whitespace / vchar / non_ascii
+  end
+
+  rule vchar
+    [\x21-\x7E]
+  end
+
+  rule alpha
+    [A-Za-z]
+  end
+
+  rule digit
+    [0-9]
+  end
+
+  rule whitespace
+    [\x20\x09]
+  end
+
+  rule crlf
+    [\x0D\x0A]+
+  end
+end
