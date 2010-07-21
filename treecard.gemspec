@@ -1,8 +1,8 @@
 spec = Gem::Specification.new do |s|
   s.name = 'treecard'
-  s.version = '0.0.1'
+  s.version = '0.0.2'
   s.summary = 'A simple vcard parser using Treetop'
-  s.add_dependency "treetop", '>= 2.3.8'
+  s.add_dependency "treetop", '>= 1.4.8'
   s.add_development_dependency "shoulda", '>= 2.10.3'
   s.author = "Justin Weiss"
   s.email = "jweiss@avvo.com"

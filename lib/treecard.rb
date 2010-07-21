@@ -3,6 +3,9 @@ require 'grammar/vcard' # implements the vcard spec, found at http://tools.ietf.
 
 class TreeCard; end
 
+class TreeCard::ParseError < Exception
+end
+
 require 'treecard/nodes/content_line_node'
 require 'treecard/nodes/param_node'
 require 'treecard/attribute'
