@@ -1,0 +1,16 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    polyglot (0.3.1)
+    rake (0.8.7)
+    shoulda (2.11.3)
+    treetop (1.4.9)
+      polyglot (>= 0.3.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rake
+  shoulda
+  treetop

@@ -1,10 +1,27 @@
 require 'rake/testtask'
+require 'rake/rdoctask'
+require 'bundler'
+Bundler::GemHelper.install_tasks
 
 task :default => :test
+task :build => :test
 
 Rake::TestTask.new do |t|
-  t.libs << %w(lib test)
-  t.ruby_opts << '-rubygems -rtest_helper'
-  t.pattern = 'test/unit/**/*_test.rb'
-  t.verbose = false
+  t.libs << "test"
+  t.test_files = FileList['test/**/*_test.rb']
+  t.verbose = true
 end
+
+Rake::TestTask.new(:coverage) do |t|
+  t.libs << "test"
+  t.ruby_opts = ["-rsimplecov_helper"]
+  t.test_files = FileList['test/**/*_test.rb']
+  t.verbose = true
+end
+
+Rake::RDocTask.new do |rd|
+  rd.main = "README.md"
+  rd.rdoc_files.include("README.md", "lib/**/*.rb")
+  rd.rdoc_dir = 'doc'
+end
+
