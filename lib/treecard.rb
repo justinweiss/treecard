@@ -67,6 +67,12 @@ class TreeCard
     attr.value if attr
   end
   
+  def url
+    attr = attributes['url']
+    attr &&= attr.first
+    attr.value if attr
+  end
+  
   # VCards automatically wrap lines longer than 75 characters. Wrapped
   # lines are signified by leading whitespace.
   def self.unfold_lines(data)

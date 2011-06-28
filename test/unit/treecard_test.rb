@@ -17,6 +17,7 @@ class TreeCardTest < Test::Unit::TestCase
       assert_equal "(925) 930-6000", @vcard.phone
       assert_equal "(925) 934-5377", @vcard.fax
       assert_equal "Youngman, Ericsson & Low, LLP", @vcard.company
+      assert_equal "www.example.com", @vcard.url
       assert_equal "1981 N. Broadway, Suite 300\nWalnut Creek\nCA\n94596-3841\nUnited States of America", @vcard.address
     end
   end
